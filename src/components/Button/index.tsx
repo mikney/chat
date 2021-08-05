@@ -9,15 +9,14 @@ interface IButtonProps {
   classname?: string;
   type?: ButtonProps["type"];
   children?: React.ReactNode;
-  size?: keyof ButtonProps["size"];
+  size?: ButtonProps["size"];
 }
 
 const Button: FC<IButtonProps> = (props) => {
-
   return (
-      <BButon {...props} className={classNames('button', props.classname, {
-          'button--large': props.size === "large"
-      })}  />
-      )
+    <BButon {...props} className={classNames('button', props.classname, {
+      'button--large': props.size === "large"
+    })}  />
+    )
 };
 export default Button;
