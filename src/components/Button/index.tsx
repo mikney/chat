@@ -10,6 +10,8 @@ interface IButtonProps {
   type?: ButtonProps["type"];
   children?: React.ReactNode;
   size?: ButtonProps["size"];
+  onClick?: (e: any) => void;
+  htmlType?: 'button' | "submit"
 }
 
 const Button: FC<IButtonProps> = (props) => {

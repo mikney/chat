@@ -21,8 +21,8 @@ const LoginForm = () => {
           onFinish={undefined}
         >
           <Form.Item
-            name="username"
-            rules={[{ required: true, message: 'Please input your Username!' }]}
+            name="email"
+            rules={[{ required: true, message: 'Пожалуйста введите назхвание почты!' }]}
             validateStatus={"success"}
             hasFeedback={true}
           >
@@ -30,7 +30,7 @@ const LoginForm = () => {
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: 'Please input your Password!' }]}
+            rules={[{ required: true, message: 'Пожалйста введите пароль!' }]}
             validateStatus={"success"}
           >
             <Input

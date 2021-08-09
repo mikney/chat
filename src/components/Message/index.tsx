@@ -8,6 +8,10 @@ import noread from "../../assets/img/noread.svg"
 type obj = {
   fullname: string
 }
+type Attachment =  {
+  filename: string
+  url: string
+}
 interface Interface {
   avatar: string
   text: string
@@ -15,8 +19,9 @@ interface Interface {
   user?: obj
   isMe: boolean
   isRead: boolean
+  attachments?: Attachment []
 }
-const Message: FC <Interface> = ({avatar, date,text, user, isMe, isRead}) => {
+const Message: FC <Interface> = ({avatar, date,text, user, isMe, isRead, attachments}) => {
   return (
     <div className={classNames('message', {'message--isme': isMe})}>
       <div className="message__content">
@@ -43,7 +48,20 @@ const Message: FC <Interface> = ({avatar, date,text, user, isMe, isRead}) => {
           <div className="message__bubble">
             <p className="message__text">{text}</p>
           </div>
-          <span className="message__date">{formatDistanceToNow(Date.parse(date), { addSuffix: true ,locale: ruLocale})}</span>
+          <div className="message__attachments">
+            {
+              attachments?.map(item => (
+                <div className="message__attachments-item">
+                  <img src={item.url} alt={item.filename}/>
+                </div>
+              ))
+            }
+          </div>
+          <span className="message__date">
+            {formatDistanceToNow(Date.parse(date), { addSuffix: true ,locale: ruLocale})}
+          </span>
+
+
         </div>
       </div>
     </div>

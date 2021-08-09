@@ -36,6 +36,27 @@
     color: #fff;
     line-height: 20px;
   }
+
+  //&__info {
+  //  display: flex;
+  //  //#{$self}__attachments {
+  //  //  display: flex;
+  //  //}
+  //}
+  &__attachments {
+    display: flex;
+    margin-bottom: 5px;
+    &-item {
+      margin-right: 5px;
+      cursor: pointer;
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+      }
+    }
+  }
+
   &__icon-readed {
     position: absolute;
     bottom: 22px;
