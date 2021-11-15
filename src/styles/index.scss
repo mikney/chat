@@ -1,5 +1,6 @@
 @import '~antd/dist/antd.css';
 @import "~reset-css";
+@import "layouts/chat";
 
 
 body, html, #root, .wrapper  {
@@ -7,4 +8,24 @@ body, html, #root, .wrapper  {
   color: #202020;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 14px;
+  background: #F4F7FD;
+  .ant-btn-circle {
+    border: 0;
+    box-shadow: none;
+    color: #202020 !important;
+    opacity: 0.4;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:after {
+      display: none;
+    }
+  }
+
+}
+
+* {
+  outline: none;
 }

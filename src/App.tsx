@@ -7,7 +7,7 @@ import {LoginForm} from "./modules";
 import Home from "./pages/Home";
 
 
-function App() {
+function App ()  {
   return (
     <div className="wrapper">
       <Route exact path={['/','/login', '/register' ]} component={Auth} />

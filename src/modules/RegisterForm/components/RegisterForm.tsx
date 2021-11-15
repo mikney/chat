@@ -5,7 +5,7 @@ import { UserOutlined, MailOutlined, LockOutlined,InfoCircleTwoTone } from '@ant
 import {Link} from "react-router-dom"
 import { useFormik, FormikErrors, FormikConfig } from 'formik';
 import {Value} from "classnames";
-
+import {validation as validateFunc} from '../../../Utils/validation'
 
 interface Interface {
 
@@ -15,32 +15,36 @@ interface FormValues {
   email: string;
   password: string;
 }
+export interface IError {
+  firstName?: any | string, email?: any | string, password?: any | string, rePassword?: any | string
+}
 const RegisterForm: FC = () => {
 
   const validate: any = (values: any) : any => {
-    const errors: {firstName?: string, email?: string, password?: any, rePassword?: any} = {}
-    if (!values.firstName) {
-      errors.firstName = 'Поле не должно быть пустым';
-    } else if (values.firstName.length > 15) {
-      errors.firstName = 'имя должно быть меншь 15 символов';
-    }
-    if (!values.email) {
-      errors.email = 'Введите почту';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Не валидное название почты';
-    }
-    if (!values.password) {
-      errors.password = 'Введите пароль'
-    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/.test(values.password)) {
-      errors.password = 'Не валидный пароль'
-    }
-    if (!values.rePassword) {
-      errors.rePassword = 'Повторите пароль';
-    } else if (values.password !== values.rePassword) {
-      errors.rePassword = 'Пароли не совпадают'
-    }
-    console.log(values.password)
-    return errors;
+
+    return validateFunc(values, true)
+    //Object.keys(values).forEach((item) => (validation)[item] && (validation)[item](errors, values[item]))
+    // if (!values.firstName) {
+    //   errors.firstName = 'Поле не должно быть пустым';
+    // } else if (values.firstName.length > 15) {
+    //   errors.firstName = 'имя должно быть меншь 15 символов';
+    // }
+    // if (!values.email) {
+    //   errors.email = 'Введите почту';
+    // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    //   errors.email = 'Не валидное название почты';
+    // }
+    // if (!values.password) {
+    //   errors.password = 'Введите пароль'
+    // } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/.test(values.password)) {
+    //   errors.password = 'Не валидный пароль'
+    // }
+    // if (!values.rePassword) {
+    //   errors.rePassword = 'Повторите пароль';
+    // } else if (values.password !== values.rePassword) {
+    //   errors.rePassword = 'Пароли не совпадают'
+    // }
+
   };
 
   const [isLogin, setLogin] = useState(true)
@@ -57,6 +61,7 @@ const RegisterForm: FC = () => {
       alert('Ny sho')
     },
   })
+  console.log(formik)
   // console.log(formik.errors.email)
   return (
     <div>
@@ -71,7 +76,7 @@ const RegisterForm: FC = () => {
             name="normal_login"
             className="login-form"
             // initialValues={{remember: true}}
-            onFinish={formik.submitForm}
+            onFinish={formik.handleSubmit}
           >
             <Form.Item
               validateStatus={formik.errors.email && formik.touched.email ? "error" : "success"}
@@ -105,7 +110,6 @@ const RegisterForm: FC = () => {
             </Form.Item>
             <Form.Item
               validateStatus={formik.errors.password && formik.touched.password ? "error" : "success"}
-              rules={[{ required: true, message: 'Please input your Username!' }]}
               hasFeedback={true}
               help={ formik.touched.password && formik.errors.password }
             >
@@ -138,8 +142,6 @@ const RegisterForm: FC = () => {
 
             </Form.Item>
             <Form.Item>
-              {//@ts-ignore
-              }
               {(formik.dirty && formik.isValid) && <span>Заполните все поля</span>}
               <Button   htmlType='submit'  size={'large'} type={'primary'}>
                 Зарегистрироваться

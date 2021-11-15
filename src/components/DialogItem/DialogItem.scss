@@ -1,0 +1,103 @@
+.dialogs {
+
+  &__item {
+    $item: &;
+
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    &-avatar {
+      width: 41px;
+      height: 41px;
+      margin-right: 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+      .img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-family: Roboto, sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 21px;
+        color: #fff
+      }
+    }
+    &--online {
+      #{$item}-avatar {
+        position: relative;
+        &:after {
+          box-sizing: content-box;
+          position: absolute;
+          right: 1px;
+          bottom: -1px;
+          content: ' ';
+          display: block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #00C980;
+          border: 3px solid #FFFFFF;
+
+        }
+      }
+    }
+    &-info {
+      flex: 1;
+
+      &-top {
+        display: flex;
+        //justify-content: space-between;
+
+        b {
+          flex: 1;
+          font-weight: bold;
+          font-size: 14px;
+          margin-bottom: 6px;
+        }
+        span {
+          opacity: .5;
+        }
+      }
+      &-bottom {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        p {
+          opacity: .5;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 220px;
+          height: 1.2em;
+          white-space: nowrap;
+
+        }
+        &-count {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          background: #F46B6B;
+          border-radius: 50%;
+          color: #fff;
+          font-size: 11px;
+          width: 18px;
+          height: 18px;
+          font-weight: bold;
+          box-shadow: 0 0 0px 3px #fff;
+          line-height: 18px
+        }
+      }
+    }
+  }
+}
